@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura // Elevate Your Focus</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="auth-layer" class="overlay">
+        <div class="auth-modal">
+            <div class="auth-header">
+                <h1>Aura</h1>
+                <p id="auth-status">Sign in to sync your workspace</p>
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" placeholder="Email Address">
+                <input type="password" id="pw" placeholder="Password">
+                <button class="btn-primary" onclick="initApp()">Enter Workspace</button>
+            </div>
+            <div class="auth-footer">
+                <button class="btn-ghost" onclick="toggleAuthMode()">Don't have an account? Sign Up</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="app-shell" class="hidden">
+        <aside class="sidebar">
+            <div class="logo">A</div>
+            <nav class="side-nav">
+                <button class="nav-item active" onclick="showPage('dash')">⚡</button>
+                <button class="nav-item" onclick="showPage('stats')">📊</button>
+                <button class="nav-item" onclick="showPage('settings')">⚙️</button>
+            </nav>
+            <button class="logout-btn" onclick="location.reload()">BYE</button>
+        </aside>
+
+        <main class="content">
+            <section id="page-dash" class="page">
+                <header class="page-header">
+                    <h2>Focus Workspace</h2>
+                    <span id="date-display">January 6, 2026</span>
+                </header>
+
+                <div class="bento-grid">
+                    <div class="tile timer-tile">
+                        <h3>Session</h3>
+                        <div class="timer-circle">
+                            <svg viewBox="0 0 100 100">
+                                <circle cx="50" cy="50" r="45" class="bg-circle"></circle>
+                                <circle cx="50" cy="50" r="45" class="progress-circle" id="prog"></circle>
+                            </svg>
+                            <span id="timer-text">25:00</span>
+                        </div>
+                        <div class="controls">
+                            <button onclick="startTimer()">Start</button>
+                            <button onclick="resetTimer()">Reset</button>
+                        </div>
+                    </div>
+
+                    <div class="tile task-tile">
+                        <h3>Top Intentions</h3>
+                        <div class="task-input">
+                            <input type="text" id="t-input" placeholder="+ Add task">
+                        </div>
+                        <div id="t-list" class="list-container"></div>
+                    </div>
+
+                    <div class="tile mini-tile">
+                        <h3>Streak</h3>
+                        <p class="stat">12 Days</p>
+                    </div>
+
+                    <div class="tile mini-tile">
+                        <h3>Vibe</h3>
+                        <p class="stat">Lofi / Deep</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        function initApp() {
+            document.getElementById('auth-layer').style.display = 'none';
+            document.getElementById('app-shell').classList.remove('hidden');
+        }
+
+        function showPage(pageId) {
+            alert("Switching to " + pageId + ". This page is ready for development!");
+        }
+
+        // Timer Logic
+        let timer;
+        function startTimer() {
+            let time = 25 * 60;
+            const display = document.getElementById('timer-text');
+            const prog = document.getElementById('prog');
+            
+            timer = setInterval(() => {
+                let mins = Math.floor(time / 60);
+                let secs = time % 60;
+                display.innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+                
+                // Animate circle
+                let offset = 283 - (283 * (time / (25 * 60)));
+                prog.style.strokeDashoffset = offset;
+
+                if (time <= 0) clearInterval(timer);
+                time--;
+            }, 1000);
+        }
+
+        function resetTimer() {
+            clearInterval(timer);
+            document.getElementById('timer-text').innerText = "25:00";
+            document.getElementById('prog').style.strokeDashoffset = 283;
+        }
+    </script>
+</body>
+</html>

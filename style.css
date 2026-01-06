@@ -1,0 +1,120 @@
+:root {
+    --bg-color: #080808;
+    --card-color: #141416;
+    --accent: #a855f7;
+    --text-primary: #ffffff;
+    --text-secondary: #71717a;
+    --border: #27272a;
+}
+
+body {
+    margin: 0;
+    background: var(--bg-color);
+    color: var(--text-primary);
+    font-family: 'Inter', -apple-system, sans-serif;
+}
+
+.hidden { display: none !important; }
+
+/* AUTHENTICATION */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.auth-modal {
+    background: var(--card-color);
+    padding: 3rem;
+    border-radius: 32px;
+    border: 1px solid var(--border);
+    width: 400px;
+    text-align: center;
+}
+
+.auth-header h1 { font-size: 2.5rem; letter-spacing: -2px; margin-bottom: 0.5rem; }
+input {
+    width: 100%;
+    padding: 1rem;
+    background: #000;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+/* APP SHELL */
+#app-shell {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 80px;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+    background: #000;
+}
+
+.logo { font-weight: 900; color: var(--accent); font-size: 1.5rem; margin-bottom: 3rem; }
+.nav-item { background: none; border: none; font-size: 1.5rem; margin: 1rem 0; cursor: pointer; opacity: 0.5; }
+.nav-item.active { opacity: 1; color: var(--accent); }
+
+/* CONTENT & BENTO */
+.content { flex: 1; padding: 3rem; overflow-y: auto; }
+.page-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem; }
+
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 250px);
+    gap: 20px;
+}
+
+.tile {
+    background: var(--card-color);
+    border-radius: 24px;
+    padding: 2rem;
+    border: 1px solid var(--border);
+}
+
+.timer-tile { grid-column: span 1; grid-row: span 2; display: flex; flex-direction: column; align-items: center; }
+.task-tile { grid-column: span 2; }
+
+/* TIMER SVG ANIMATION */
+.timer-circle { position: relative; width: 200px; height: 200px; margin: 2rem 0; }
+svg { transform: rotate(-90deg); }
+circle { fill: transparent; stroke-width: 8; stroke-linecap: round; }
+.bg-circle { stroke: var(--border); }
+.progress-circle {
+    stroke: var(--accent);
+    stroke-dasharray: 283;
+    stroke-dashoffset: 283;
+    transition: stroke-dashoffset 0.3s;
+}
+
+#timer-text {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+/* BUTTONS */
+.btn-primary {
+    width: 100%; padding: 1rem; background: var(--accent);
+    border: none; border-radius: 12px; color: white; font-weight: bold; cursor: pointer;
+}
+
+.controls button {
+    background: var(--border); color: white; border: none;
+    padding: 0.5rem 1rem; border-radius: 8px; margin: 0 5px; cursor: pointer;
+}
