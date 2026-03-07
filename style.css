@@ -55,7 +55,7 @@ input, select {
 
 input:focus { border-color: var(--accent); }
 
-/* MAIN LAYOUT */
+
 #app-shell {
     display: flex;
     width: 100vw;
@@ -236,5 +236,6 @@ circle { fill: transparent; stroke-width: 6; stroke-linecap: round; }
 }
 .setting-item span { color: var(--text-secondary); }
 .setting-item input { width: 80px; margin-bottom: 0; text-align: center; }
+
 
 
